@@ -123,6 +123,8 @@ export function activate(context: vscode.ExtensionContext) {
           },
         });
 
+        const { reg_str = [], axios_path = '', axios_alias = '' } = vscode.workspace.getConfiguration("jq_ajax_2_axios.config") || {};
+  
         const template = genTemplate({
           method,
           data,
@@ -131,6 +133,9 @@ export function activate(context: vscode.ExtensionContext) {
           error,
           complete,
           fail,
+          reg_str,
+          axios_path,
+          axios_alias,
         });
 
         editor.edit((editBuilder) => {

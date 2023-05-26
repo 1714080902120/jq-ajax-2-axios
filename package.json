@@ -1,14 +1,20 @@
 {
   "name": "jq-ajax-2-axios",
+  "publisher": "1714080902120",
   "displayName": "jQ_ajax_2_axios",
   "description": "transform jquery ajax into axios",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "icon": "logo.png",
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.78.0"
   },
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1714080902120/jq-ajax-2-axios"
+  },
   "activationEvents": [
     "onCommand:jq-ajax-2-axios.transform"
   ],
@@ -37,13 +43,13 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run package",
+    "vscode:prepublish": "npm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },

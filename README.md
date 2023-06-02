@@ -15,6 +15,8 @@ as the name meaning, it can transform your `$.ajax({})` block into `try catch + 
 **jq_ajax_2_axios.config**
 - `axios_path`: your axios path, cause it is hard to know your axios path.
 - `reg_str`: an nest array which elements contains an `reg rule` and replace `target`, make sure your regexp is correct.
+- `replace_all`: will replace all match element.
+- `remove_fn_wrapper`: don't need function wrapper.
 - `axios_alias`: your axios's name, you can all rename: `this.$axios` which meaning use your global axios from instance.
 
 
@@ -24,6 +26,8 @@ open your user settings.json, and copy it into the json
       "jq_ajax_2_axios.config": {
         "axios_path": "import { axios } from '@/apis/request'",
         "reg_str": [[".*?\\$.parseJSON(.*?);", ""]],
+        "replace_all": true,
+        "remove_fn_wrapper": true,
         "axios_alias": "this.$axios"
     }
 ```

@@ -10,6 +10,8 @@ export function genTemplate(params: Record<string, any>): string {
     reg_str,
     axios_path,
     axios_alias,
+    replace_all,
+    remove_fn_wrapper
   } = params;
   const errParamsName = error?.params || fail?.params || "_err";
 
@@ -38,11 +40,11 @@ export function genTemplate(params: Record<string, any>): string {
   return reg_str.reduce(
     (prev: string, current: [string, string]) => {
       const [rule, target] = current;
-      const reg = new RegExp(rule);
-      return prev.replace(reg, target);
+      const reg = replace_all ? new RegExp(rule, 'gi') : new RegExp(rule);
+      return replace_all ?  prev.replaceAll(reg, target) : prev.replace(reg, target);
     },
     `
-    async function use_axios() {
+    ${remove_fn_wrapper ? '' : 'async function use_axios() {'}
       ${axios_path}\n
       try {
         ${
@@ -66,9 +68,7 @@ export function genTemplate(params: Record<string, any>): string {
           : ""
       }
         
-    }
-  
-    use_axios();
+    ${remove_fn_wrapper ? '' : '}\n use_axios();'}
   `
   );
 }
